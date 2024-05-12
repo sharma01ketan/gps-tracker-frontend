@@ -2,7 +2,7 @@
 import React from 'react';
 import DialogBox from '../Components/DialogBox.jsx';
 
-const ActionButtons = ({ isLoggedIn, onLoginSuccess, onLogout }) => {
+const ActionButtons = ({ isLoggedIn, setIsLoggedIn,onLoginSuccess, onLogout }) => {
   const buttons = isLoggedIn
     ? [
         {
@@ -41,6 +41,8 @@ const ActionButtons = ({ isLoggedIn, onLoginSuccess, onLogout }) => {
           dialogContentText={button.dialogContentText}
           onLoginSuccess={button.onLoginSuccess}
           onLogout={button.onClick}
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
         />
       ))}
     </div>
@@ -48,7 +50,6 @@ const ActionButtons = ({ isLoggedIn, onLoginSuccess, onLogout }) => {
 };
 
 export default ActionButtons;
-
 
 
 

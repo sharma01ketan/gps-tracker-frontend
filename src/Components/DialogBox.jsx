@@ -7,7 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-const DialogBox = ({ buttonText, dialogTitle, dialogContentText }) => {
+const DialogBox = ({ buttonText, dialogTitle, dialogContentText, isLoggedIn,setIsLoggedIn }) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -39,7 +39,8 @@ const DialogBox = ({ buttonText, dialogTitle, dialogContentText }) => {
         
         if (response.ok) {
           // Login successful, you can perform any necessary actions here
-          console.log('Login successful');
+          setIsLoggedIn(!isLoggedIn)
+          console.log('SignUp successful');
         } else {
           // Login failed, handle error
           console.error('SingUp failed:', response.statusText);
@@ -64,10 +65,36 @@ const DialogBox = ({ buttonText, dialogTitle, dialogContentText }) => {
         
         if (response.ok) {
           // Login successful, you can perform any necessary actions here
+          setIsLoggedIn(!isLoggedIn)
           console.log('Login successful');
         } else {
           // Login failed, handle error
           console.error('Login failed:', response.statusText);
+        }
+      } catch (error) {
+        console.error('An error occurred during login:', error);
+      }
+    } else if (buttonText === 'Logout') {
+      try {
+        console.log("request sent")
+        const response = await fetch('http://localhost:8000/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: formJson.email,
+            password: formJson.password,
+          }),
+        });
+        
+        if (response.ok) {
+          // Login successful, you can perform any necessary actions here
+          setIsLoggedIn(!isLoggedIn)
+          console.log('Logout successful');
+        } else {
+          // Login failed, handle error
+          console.error('Logout failed:', response.statusText);
         }
       } catch (error) {
         console.error('An error occurred during login:', error);
