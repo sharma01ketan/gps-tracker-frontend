@@ -3,6 +3,15 @@ import React from 'react';
 import DialogBox from '../Components/DialogBox.jsx';
 
 const ActionButtons = ({ isLoggedIn, setIsLoggedIn,onLoginSuccess, onLogout }) => {
+
+  console.log(`localStorage: ${localStorage.length}`)
+      if(localStorage.length>0){
+        isLoggedIn = true
+      } else{
+        isLoggedIn = false
+      }
+        
+
   const buttons = isLoggedIn
     ? [
         {
@@ -30,6 +39,8 @@ const ActionButtons = ({ isLoggedIn, setIsLoggedIn,onLoginSuccess, onLogout }) =
           dialogContentText: 'Create an account to access all features.',
         },
       ];
+
+
 
   return (
     <div>
