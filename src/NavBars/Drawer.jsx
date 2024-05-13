@@ -46,7 +46,7 @@ export default function TemporaryDrawer() {
         edge="start"
         color="inherit"
         aria-label="menu"
-        onClick={toggleDrawer(true)} // Open the drawer on click
+        onClick={toggleDrawer(true)} 
       >
         <MenuIcon />
       </IconButton>
