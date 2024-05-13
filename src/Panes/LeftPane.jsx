@@ -1,13 +1,11 @@
 import React from 'react'
 import LocationCard from '../Cards/LocationCard'
 
-
-
 const LeftPane = () => {
 
     let numberOfCards = 10
     const cardElements = Array.from({ length: numberOfCards }, (_, index) => (
-        <LocationCard key={index} />
+        <LocationCard key={index} title={index} content={index} subtitle={index}/>
       ));
 
 
