@@ -7,7 +7,7 @@ const LeftPane = () => {
     const cardElements = Array.from({ length: numberOfCards }, (_, index) => (
         <LocationCard key={index} title={index} content={index} subtitle={index}/>
       ));
-
+//ketan sharma
 
   return (
     <div 
