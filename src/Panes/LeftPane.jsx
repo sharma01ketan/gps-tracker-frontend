@@ -17,7 +17,7 @@ const LeftPane = () => {
             setUsername(username);
             fetchLocations(username);
         }
-    }, [username]); // Include username as a dependency
+    }, [username]);
 
     const fetchLocations = async (username) => {
         try {
@@ -35,46 +35,11 @@ const LeftPane = () => {
             }
             const data = await response.json();
             console.log(`The data`, data);
-            setLocations(data.data); // Assuming data contains an array of location objects
+            setLocations(data.data);
         } catch (error) {
             console.error('Error fetching locations:', error);
         }
     };
-
-    const [rerender, setRerender] = useState(false);
-    const forceRerender = () => {
-      setRerender(!rerender); // Toggle the value to force rerender
-    };
-
-  //   This is in working state
-  //   const handleAddLocation = async () => {
-  //     try {
-  //         const response = await fetch('http://localhost:8000/api/addLocation', {
-  //             method: 'POST',
-  //             headers: {
-  //                 'Content-Type': 'application/json'
-  //             },
-  //             body: JSON.stringify({
-  //                 latitude: parseFloat(latitude),
-  //                 longitude: parseFloat(longitude),
-  //                 username: username
-  //             })
-  //         });
-  //         if (!response.ok) {
-  //             throw new Error('Failed to add location');
-  //         }
-  //         const data = await response.json();
-  //         console.log(`New location added:`, data);
-  //         setLocations(data.data);
-  
-  //         // Reset latitude and longitude fields after adding the location
-  //         setLatitude('');
-  //         setLongitude('');
-
-  //     } catch (error) {
-  //         console.error('Error adding location:', error);
-  //     }
-  // };
 
   const handleAddLocation = async () => {
     try {
@@ -96,11 +61,9 @@ const LeftPane = () => {
         console.log(`New location added:`, data);
         setLocations(data.data);
 
-        // Reset latitude and longitude fields after adding the location
         setLatitude('');
         setLongitude('');
 
-        // Fetch all locations after adding a new one
         window.location.reload();
         await fetchAllLocations(username);
     } catch (error) {
@@ -129,10 +92,6 @@ const fetchAllLocations = async (username) => {
         console.error('Error fetching all locations:', error);
     }
 };
-
-  
-
-   
   
 
 
