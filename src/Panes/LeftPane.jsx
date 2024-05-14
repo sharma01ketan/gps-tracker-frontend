@@ -3,12 +3,18 @@ import LocationCard from '../Cards/LocationCard';
 
 const LeftPane = () => {
     const [locations, setLocations] = useState([]);
+    const [username, setUsername] = useState('');
 
     useEffect(() => {
-        fetchLocations();
-    }, []); // Empty dependency array ensures the effect runs only once after the initial render
+        const userData = localStorage.getItem('user');
+        if (userData) {
+            const { username } = JSON.parse(userData);
+            setUsername(username);
+            fetchLocations(username);
+        }
+    }, []);
 
-    const fetchLocations = async () => {
+    const fetchLocations = async (username) => {
         try {
             const response = await fetch('http://localhost:8000/api/allLocations', {
                 method: 'POST',
@@ -16,7 +22,7 @@ const LeftPane = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    username: 'sharma01ketan@gmail.com' // Replace with actual username
+                    username: username
                 })
             });
             if (!response.ok) {
@@ -60,6 +66,7 @@ const LeftPane = () => {
 };
 
 export default LeftPane;
+
 
 
 // import React, { useState, useEffect } from 'react';
