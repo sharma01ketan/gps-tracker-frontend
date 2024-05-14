@@ -22,9 +22,9 @@ export default function SimpleBottomNavigation({ onChange }) {
       value={value}
       onChange={handleChange}
     >
-      <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+      <BottomNavigationAction label="Distance" icon={<LocationOnIcon />} />
       <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-      <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+      <BottomNavigationAction label="Nearby" icon={<RestoreIcon />} />
     </BottomNavigation>
   );
 }
